@@ -19,8 +19,10 @@ import java.util.List;
  **/
 public class DeptDao {
 
+    public static final String MYBATIS_CONFIG_XML = "mybatis-config.xml";
+
     private SqlSession getSqlSession(){
-        String resource = "mybatis-config.xml";
+        String resource = MYBATIS_CONFIG_XML;
         InputStream inputStream = null;
         try {
             inputStream = Resources.getResourceAsStream(resource);
