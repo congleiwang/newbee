@@ -271,3 +271,7 @@ local.properties
 .scala_dependencies
 .worksheet
 
+.idea/
+01-mybatis/01-mybatis.iml
+01-mybatis/src/test/
+01-mybatis/target/
