@@ -21,8 +21,12 @@
     <typeHandlers>
         <typeHandler handler="wang.conglei.mybatis.handler.BooleanTypeHandler"/>
     </typeHandlers>
-    
-    <objectFactory type="wang.conglei.mybatis.factory.MyObjectFactory" />
+
+    <objectFactory type="wang.conglei.mybatis.factory.MyObjectFactory"/>
+
+    <plugins>
+        <plugin interceptor="wang.conglei.mybatis.plugin.ExcutorIntercepter"/>
+    </plugins>
 
     <environments default="dev">
         <environment id="dev">
