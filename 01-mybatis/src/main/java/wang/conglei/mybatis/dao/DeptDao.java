@@ -17,6 +17,6 @@ public interface DeptDao {
 
     Dept getById(Integer id);
 
-    List<Dept> page();
+    List<Dept> listAll();
 
 }

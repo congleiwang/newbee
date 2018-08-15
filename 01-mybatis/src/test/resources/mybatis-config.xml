@@ -13,10 +13,17 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
+
     <typeAliases>
         <package name="wang.conglei.mybatis.entity"/>
     </typeAliases>
+
+    <typeHandlers>
+        <typeHandler handler="wang.conglei.mybatis.handler.BooleanTypeHandler"/>
+    </typeHandlers>
     
+    <objectFactory type="wang.conglei.mybatis.factory.MyObjectFactory" />
+
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"/>
@@ -31,9 +38,9 @@
 
     <mappers>
         <package name="wang.conglei.mybatis.dao"/>
-<!--
-        <mapper resource="mapper/deptMapper.xml" />
--->
+        <!--
+                <mapper resource="mapper/deptMapper.xml" />
+        -->
     </mappers>
 
 

@@ -5,11 +5,15 @@
 <mapper namespace="wang.conglei.mybatis.dao.DeptDao">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into sys_dept(dept_name,loc) values (#{deptName},#{loc})
+        insert into sys_dept(dept_name,loc,enabled) values (#{deptName},#{loc},#{enabled})
     </insert>
 
     <select id="getById" resultType="dept">
-        select id,dept_name deptName,loc from sys_dept where id = #{id}
+        select id,dept_name deptName,loc,enabled from sys_dept where id = #{id}
+    </select>
+    
+    <select id="listAll" resultType="dept">
+        select * from sys_dept
     </select>
 
 </mapper>

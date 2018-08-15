@@ -10,13 +10,22 @@ public class Dept {
     private Integer id;
     private String deptName;
     private String loc;
+    private Boolean enabled;
 
     public Dept() {
     }
 
-    public Dept( String deptName, String loc) {
+    public Dept(String deptName, String loc) {
         this.deptName = deptName;
         this.loc = loc;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Integer getId() {
@@ -49,6 +58,7 @@ public class Dept {
                 "id=" + id +
                 ", deptName='" + deptName + '\'' +
                 ", loc='" + loc + '\'' +
+                ", enabled=" + enabled +
                 '}';
     }
 }
