@@ -10,12 +10,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import wang.conglei.mybatis.dao.DeptDao;
+import wang.conglei.mybatis.dao.EmpDao;
 import wang.conglei.mybatis.entity.Dept;
+import wang.conglei.mybatis.entity.Emp;
 
 import java.io.InputStream;
 import java.util.List;
 
-public class DeptDaoTest {
+public class EmpDaoTest {
 
     private SqlSession session;
 
@@ -40,26 +42,9 @@ public class DeptDaoTest {
     }
 
     @Test
-    public void insert() throws Exception {
-        Dept dept = new Dept("销售部1", "深圳市南山区XXX二楼");
-        dept.setEnabled(false);
-        DeptDao deptDao = session.getMapper(DeptDao.class);
-        deptDao.insert(dept);
-        System.out.println(JSON.toJSONString(dept));
-
-    }
-
-    @Test
-    public void getById() {
-        DeptDao deptDao = session.getMapper(DeptDao.class);
-        Dept dept = deptDao.getById(25);
-        System.out.println(JSON.toJSONString(dept));
-    }
-
-    @Test
-    public void listAll() {
-        DeptDao deptDao = session.getMapper(DeptDao.class);
-        List<Dept> result = deptDao.listAll();
+    public void list() {
+        EmpDao empDao = session.getMapper(EmpDao.class);
+        List<Emp> result = empDao.list();
         System.out.println(JSON.toJSONString(result, SerializerFeature.PrettyFormat));
     }
 }

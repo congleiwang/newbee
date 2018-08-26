@@ -4,14 +4,57 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wang.conglei.mybatis.dao.DeptDao">
 
+    <resultMap id="dept" type="dept">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="loc" property="loc"/>
+        <result column="enabled" property="enabled"/>
+        <!-- collection中的column为一方主键字段名称-->
+        <collection property="emps" ofType="emp" column="id">
+            <id column="empId" property="id"/>
+            <result column="emp_name" property="empName"/>
+        </collection>
+    </resultMap>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into sys_dept(dept_name,loc,enabled) values (#{deptName},#{loc},#{enabled})
     </insert>
 
-    <select id="getById" resultType="dept">
-        select id,dept_name deptName,loc,enabled from sys_dept where id = #{id}
+    <select id="getById" resultMap="dept">
+        SELECT
+            sys_dept.id,
+            dept_name,
+            loc,
+            enabled,
+            sys_emp.id empId,
+            emp_name
+        FROM
+            sys_dept
+            LEFT JOIN sys_emp ON sys_dept.id = sys_emp.dept_id
+        WHERE
+            sys_dept.id = #{id}
     </select>
+
+
+    <resultMap id="dept2" type="dept">
+        <id column="id" property="id"/>
+        <result column="dept_name" property="deptName"/>
+        <result column="loc" property="loc"/>
+        <result column="enabled" property="enabled"/>
+        <!-- collection中的column为一方主键字段名称-->
+        <collection property="emps" ofType="emp" select="getEmpByDeptNo" column="id">
+            <id column="id" property="id"/>
+            <result column="emp_name" property="empName"/>
+        </collection>
+    </resultMap>
     
+    <select id="getEmpByDeptNo" resultType="emp">
+        select id,emp_name from sys_emp where dept_id = #{dept_id}
+    </select>
+    <select id="getDeptById" resultMap="dept2">
+        select id,dept_name,loc,enabled from sys_dept where id =#{id}
+    </select>
+
     <select id="listAll" resultType="dept">
         select * from sys_dept
     </select>

@@ -1,5 +1,7 @@
 package wang.conglei.mybatis.entity;
 
+import java.util.List;
+
 /**
  * @program: mybatis
  * @description: 实体类，部门
@@ -11,6 +13,7 @@ public class Dept {
     private String deptName;
     private String loc;
     private Boolean enabled;
+    private List<Emp> emps;
 
     public Dept() {
     }
@@ -50,6 +53,14 @@ public class Dept {
 
     public void setLoc(String loc) {
         this.loc = loc;
+    }
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
     }
 
     @Override
